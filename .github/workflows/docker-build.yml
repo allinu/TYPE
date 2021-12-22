@@ -37,6 +37,7 @@ jobs:
       - name: Build the Docker image
         run: |
           cd /home/runner/work/qwerty-learner/qwerty-learner
+          cp -r /home/runner/work/qwerty-learner/qwerty-learner/src/build dist
           docker build . --file Dockerfile --tag $IMAGE_NAME
       - name: Log into registry
         run: echo "${{ secrets.PASSWORD }}" | docker login -u $DOCKER_USERNAME --password-stdin
