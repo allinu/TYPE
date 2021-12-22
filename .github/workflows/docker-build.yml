@@ -33,11 +33,6 @@ jobs:
           cd /home/runner/work/qwerty-learner/qwerty-learner/src
           yarn
           yarn build
-      - name: store build files
-        uses: actions/upload-artifact@v2.3.1
-        with:
-          name: build-files
-          path: src/dist/
 
       - name: Build the Docker image
         run: |
