@@ -18,12 +18,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - run: echo "$PWD"
       - name: Git Clone Action
         uses: sudosubin/git-clone-action@v1.0.1
         with:
           repository: Kaiyiwing/qwerty-learner
-          path: .
+          path: src
 
   build-static-files:
     needs: [ get_source ]
@@ -34,7 +33,9 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - run: echo "$PWD"
+    - run: |
+        echo "$PWD"
+        ls -al .
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v2
       with:
