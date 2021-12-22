@@ -35,7 +35,7 @@ jobs:
       - run: |
           echo "$PWD"
           ls -al .
-          cd src
+          cd /home/runner/work/qwerty-learner/qwerty-learner/src
           echo "$PWD"
           ls -al .
           yarn
@@ -46,37 +46,28 @@ jobs:
           name: build-files
           path: src/dist/
 
-  build-docker-image:
-    needs: [ get_source_and_build ]
-    runs-on: ubuntu-latest
+      - name: Build the Docker image
+        run: |
+          cd /home/runner/work/qwerty-learner/qwerty-learner
+          docker build . --file Dockerfile --tag $IMAGE_NAME
+      - name: Log into registry
+        run: echo "${{ secrets.PASSWORD }}" | docker login -u $DOCKER_USERNAME --password-stdin
+      - name: Push image
+        run: |
+          # 将所有的大写字母转为小写
+          IMAGE_NAME=$(echo $IMAGE_NAME | tr '[A-Z]' '[a-z]')
 
-    steps:
-    - uses: actions/checkout@v2
-    - name: Download a Build Artifact
-      uses: actions/download-artifact@v2.1.0
-      with:
-        name: build-files
-        path: src/dist/
-    - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag $IMAGE_NAME
-    - name: Log into registry
-      run: echo "${{ secrets.PASSWORD }}" | docker login -u $DOCKER_USERNAME --password-stdin
-    - name: Push image
-      run: |
-        # 将所有的大写字母转为小写
-        IMAGE_NAME=$(echo $IMAGE_NAME | tr '[A-Z]' '[a-z]')
+          # 从 GitHub.ref 中取出版本
+          VERSION=$(echo "${{ github.ref }}" | sed -e 's,.*/\(.*\),\1,')
 
-        # 从 GitHub.ref 中取出版本
-        VERSION=$(echo "${{ github.ref }}" | sed -e 's,.*/\(.*\),\1,')
+          # 从 tag 名字中替换 v 字符
+          [[ "${{ github.ref }}" == "refs/tags/"* ]] && VERSION=$(echo $VERSION | sed -e 's/^v//')
 
-        # 从 tag 名字中替换 v 字符
-        [[ "${{ github.ref }}" == "refs/tags/"* ]] && VERSION=$(echo $VERSION | sed -e 's/^v//')
+          # Use Docker `latest` tag convention
+          [ "$VERSION" == "main" ] && VERSION=latest
 
-        # Use Docker `latest` tag convention
-        [ "$VERSION" == "main" ] && VERSION=latest
-
-        echo VERSION=$VERSION
-        # 设置镜像 id 和版本号
-        docker tag $IMAGE_NAME $IMAGE_NAME:$VERSION
-        # 进行 push
-        docker push $IMAGE_NAME:$VERSION
+          echo VERSION=$VERSION
+          # 设置镜像 id 和版本号
+          docker tag $IMAGE_NAME $IMAGE_NAME:$VERSION
+          # 进行 push
+          docker push $IMAGE_NAME:$VERSION
