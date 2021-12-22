@@ -18,11 +18,9 @@
   <a><img src="https://img.shields.io/badge/Powered%20by-React-blue"/></a>
 </p>
 
-<div align=center>
-<img  src="https://i0.hdslb.com/bfs/album/59d5afeda2755cdbc43e2d406cc3e0d2384e7da5.png"/>
-</div>
 
 ## 📸 在线访问
+<hr> 
 
 Vercel: https://qwerty-learner.vercel.app/ ，https://qwerty.kaiyi.cool/  
 GitHub Pages: https://kaiyiwing.github.io/qwerty-learner/  
@@ -32,6 +30,7 @@ Gitee Pages: https://kaiyiwing.gitee.io/qwerty-learner/
 <br/>
 <br/>
 
+
 项目已发布 VSCode 插件版，一键启动、随时开始练习  
 [VSCode Plugin Market](https://marketplace.visualstudio.com/items?itemName=Kaiyi.qwerty-learner)  
 [GitHub](https://github.com/Kaiyiwing/qwerty-learner-vscode)
@@ -39,11 +38,16 @@ Gitee Pages: https://kaiyiwing.gitee.io/qwerty-learner/
 <br />
 
 
-**这是Docker版本**
+# 这是Docker版本
+
 
 **原项目链接[Kaiyiwing/qwerty-learner](https://github.com/Kaiyiwing/qwerty-learner)**
+
 **原项目链接[Kaiyiwing/qwerty-learner](https://github.com/Kaiyiwing/qwerty-learner)**
+
 **原项目链接[Kaiyiwing/qwerty-learner](https://github.com/Kaiyiwing/qwerty-learner)**
+
+<hr> 
 
 ## 🥢 使用方法
 
