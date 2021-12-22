@@ -23,9 +23,6 @@ jobs:
         with:
           repository: Kaiyiwing/qwerty-learner
           path: src
-      - run: |
-          echo "$PWD"
-          ls -al .
       - name: Use Node.js 16
         uses: actions/setup-node@v2
         with:
@@ -33,11 +30,7 @@ jobs:
           cache: 'yarn'
           cache-dependency-path: src/yarn.lock
       - run: |
-          echo "$PWD"
-          ls -al .
           cd /home/runner/work/qwerty-learner/qwerty-learner/src
-          echo "$PWD"
-          ls -al .
           yarn
           yarn build
       - name: store build files
