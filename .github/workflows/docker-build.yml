@@ -27,9 +27,6 @@ jobs:
   build-static-files:
     needs: [ get_source ]
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: src
     strategy:
       matrix:
         node-version: [16.x]
