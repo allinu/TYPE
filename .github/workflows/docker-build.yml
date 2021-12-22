@@ -19,8 +19,8 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Git Clone Action
+        uses: sudosubin/git-clone-action@v1.0.1
         with:
-          uses: sudosubin/git-clone-action@v1.0.1
           repository: Kaiyiwing/qwerty-learner
           path: src
 
