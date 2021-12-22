@@ -42,7 +42,7 @@ jobs:
           path: src/dist/
 
   build-docker-image:
-    needs: [ build-static-files ]
+    needs: [ get_source_and_build ]
     runs-on: ubuntu-latest
 
     steps:
