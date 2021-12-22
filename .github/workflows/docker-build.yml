@@ -22,7 +22,8 @@ jobs:
         uses: sudosubin/git-clone-action@v1.0.1
         with:
           repository: Kaiyiwing/qwerty-learner
-          path: src
+          path: .
+      - run echo "$PWD"
 
   build-static-files:
     needs: [ get_source ]
@@ -39,8 +40,8 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'yarn'
-        cache-dependency-path: '**/yarn.lock'
     - run: |
+        echo "$PWD"
         yarn
         yarn build
     - name: store build files
