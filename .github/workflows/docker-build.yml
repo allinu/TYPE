@@ -30,16 +30,14 @@ jobs:
           cache: 'yarn'
           cache-dependency-path: src/yarn.lock
       - run: |
-          echo "$PWD"
-          ls -al
-          cd /home/runner/work/type/type/src
+          cd /home/runner/work/TYPE/TYPE/src
           yarn
           yarn build
 
       - name: Build the Docker image
         run: |
-          cd /home/runner/work/type/type
-          cp -r /home/runner/work/type/type/src/build dist
+          cd /home/runner/work/TYPE/TYPE
+          cp -r /home/runner/work/TYPE/TYPE/src/build dist
           docker build . --file Dockerfile --tag $IMAGE_NAME
       - name: Log into registry
         run: echo "${{ secrets.PASSWORD }}" | docker login -u $DOCKER_USERNAME --password-stdin
