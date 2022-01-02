@@ -52,7 +52,7 @@ Gitee Pages: https://kaiyiwing.gitee.io/qwerty-learner/
 ## 🥢 使用方法
 
 ```shell
-docker run -d --name learner -p 3000:3000 liona/qwertylearner
+docker run -d --name learner -p 3000:80 liona/type
 ```
 
 当执行完毕,打开[http://localhost:3000](http://localhost:3000)访问即可
